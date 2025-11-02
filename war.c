@@ -1,121 +1,58 @@
 #include <stdio.h>
-#include <string.h> // Para usar strcspn
+#include <string.h>
 
-// Função para limpar o buffer de entrada
+// definição da struct territorio
+struct Territorio {
+    char nome[30];
+    char cor[10];
+    int tropas;
+};
+
+// funçao para limpar o buffer de entrada
 void limparBuffer() {
-    while (getchar() != '\n');
+    int c;
+    while ((c = getchar()) != '\n' && c != EOF);
 }
 
 int main() {
-    char territorio1[50], territorio2[50], territorio3[50], territorio4[50], territorio5[50];
-    char cor1[50], cor2[50], cor3[50], cor4[50], cor5[50];
-    int tropas1, tropas2, tropas3, tropas4, tropas5;
-
-    printf("Vamos cadastrar os 5 territorios iniciais do nosso mundo.\n");
+    // declaração do vetor de structs com capacidade para 5 territórios
+    struct Territorio territorios[5];
     
-    // Território 1
-    printf("\nCadastrando territorio 1\n");
-    printf("Nome do Territorio: ");
-    scanf("%[^\n]", territorio1);
-    limparBuffer();
+    printf("=== SISTEMA DE CADASTRO DE TERRITORIOS ===\n");
+    printf("Vamos cadastrar os 5 territorios iniciais.\n\n");
     
-    printf("Cor do Territorio: ");
-    scanf("%[^\n]", cor1);
-    limparBuffer();
     
-    printf("Numero de Tropas: ");
-    scanf("%d", &tropas1);
-    limparBuffer();
+    for (int i = 0; i < 5; i++) {
+        printf("Cadastrando territorio %d\n", i + 1);
+        
+        // nome do território
+        printf("Nome do Territorio (max 30 caracteres): ");
+        scanf("%29[^\n]", territorios[i].nome);
+        limparBuffer();
+        
+        // cor do território
+        printf("Cor do Exercito (max 10 caracteres): ");
+        scanf("%9[^\n]", territorios[i].cor);
+        limparBuffer();
+        
+        // numero de tropas
+        printf("Numero de Tropas: ");
+        scanf("%d", &territorios[i].tropas);
+        limparBuffer();
+        
+        printf("\n");
+    }
     
-    // Território 2
-    printf("\nCadastrando territorio 2\n");
-    printf("Nome do Territorio: ");
-    scanf("%[^\n]", territorio2);
-    limparBuffer();
+    // exibiçao dos dados cadastrados
+    printf("=== TERRITORIOS CADASTRADOS ===\n\n");
     
-    printf("Cor do Territorio: ");
-    scanf("%[^\n]", cor2);
-    limparBuffer();
-    
-    printf("Numero de Tropas: ");
-    scanf("%d", &tropas2);
-    limparBuffer();
-    
-    // Território 3
-    printf("\nCadastrando territorio 3\n");
-    printf("Nome do Territorio: ");
-    scanf("%[^\n]", territorio3);
-    limparBuffer();
-    
-    printf("Cor do Territorio: ");
-    scanf("%[^\n]", cor3);
-    limparBuffer();
-    
-    printf("Numero de Tropas: ");
-    scanf("%d", &tropas3);
-    limparBuffer();
-    
-    // Território 4
-    printf("\nCadastrando territorio 4\n");
-    printf("Nome do Territorio: ");
-    scanf("%[^\n]", territorio4);
-    limparBuffer();
-    
-    printf("Cor do Territorio: ");
-    scanf("%[^\n]", cor4);
-    limparBuffer();
-    
-    printf("Numero de Tropas: ");
-    scanf("%d", &tropas4);
-    limparBuffer();
-    
-    // Território 5
-    printf("\nCadastrando territorio 5\n");
-    printf("Nome do Territorio: ");
-    scanf("%[^\n]", territorio5);
-    limparBuffer();
-    
-    printf("Cor do Territorio: ");
-    scanf("%[^\n]", cor5);
-    limparBuffer();
-    
-    printf("Numero de Tropas: ");
-    scanf("%d", &tropas5);
-    limparBuffer();
-    
-    // Exibindo os dados cadastrados
-    printf("\n=== TERRITORIOS CADASTRADOS ===\n");
-    printf("\n");
-
-    // Território 1
-    printf("Territorio 1:\n");
-    printf("Nome: %s\n", territorio1);
-    printf("Cor: %s\n", cor1);
-    printf("Tropas: %d\n\n", tropas1);
-    
-    // Território 2
-    printf("Territorio 2:\n");
-    printf("Nome: %s\n", territorio2);
-    printf("Cor: %s\n", cor2);
-    printf("Tropas: %d\n\n", tropas2);
-    
-    // Território 3
-    printf("Territorio 3:\n");
-    printf("Nome: %s\n", territorio3);
-    printf("Cor: %s\n", cor3);
-    printf("Tropas: %d\n\n", tropas3);
-    
-    // Território 4
-    printf("Territorio 4:\n");
-    printf("Nome: %s\n", territorio4);
-    printf("Cor: %s\n", cor4);
-    printf("Tropas: %d\n\n", tropas4);
-    
-    // Território 5
-    printf("Territorio 5:\n");
-    printf("Nome: %s\n", territorio5);
-    printf("Cor: %s\n", cor5);
-    printf("Tropas: %d\n", tropas5);
+    // percorrendo o vetor para exibir todos os territórios
+    for (int i = 0; i < 5; i++) {
+        printf("Territorio %d:\n", i + 1);
+        printf("  Nome: %s\n", territorios[i].nome);
+        printf("  Cor: %s\n", territorios[i].cor);
+        printf("  Tropas: %d\n\n", territorios[i].tropas);
+    }
     
     return 0;
 }
